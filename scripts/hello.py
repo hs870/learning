@@ -1,5 +1,3 @@
-"""test Flask with this"""
-
 from flask import Flask
 
 
