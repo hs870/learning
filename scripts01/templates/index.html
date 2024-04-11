@@ -8,5 +8,15 @@
     <h1>WebApp has been rendered!</h1>
     <h2>Number1 is {{val1}}<br>
     Number2 is {{val2}}</h2>
+    <form action="http://localhost:5005/Go" method="post">
+        <label for="val3">pick 3rd value</label><br>
+        <input type="text" id="val3" name="thirdval"><br>
+        <label for="lname">4th number</label><br>
+        <input type="text" id="val4" name="fourthval"><br>
+        <input type="submit" value="Post Go">
+    </form>
+    <form action="http://localhost:5005/Go" method="get">
+        <input type="submit" value="Get Go">
+    </form>
 </body>
 </html>
