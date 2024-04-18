@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+    var a = 0;
+    function firstFunction() {
+    
+        if(a == 0){
+            document.getElementById("texto").innerHTML = "Text Option 1";
+            a = 1;
+        } else{
+            document.getElementById("texto").innerHTML = "Text Option 2";
+            a = 0;
+        }
+    }
+</script>
+</head>
+
+<body>
+
+<h2>Texto vai mudar</h2>
+
+<p id="texto">Texto Inicial</p>
+<button type="button" onclick="firstFunction()">Change Text</button>
+
+</body>
+</html>
