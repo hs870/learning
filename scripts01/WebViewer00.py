@@ -29,8 +29,24 @@ def test_page():
         print("type2 foi imprimido acima")
         print(received)
         print("received foi imprimdo acima")
-        #param1 = 
-        #param2 = 
+        j = len(received)
+        print("A string recebida tem "+str(j)+" chars")
+        i = 0
+        params = 0
+        print("houve um cast mas j deve manter-se como INT")
+        print(type(j))
+        print("imprimiu.se o type de j")
+        while(i < j):
+            #print(i)
+            if (received[i] == '='):
+                print("encontrou.se um = no indice: "+str(i)+" ... proseguindo")
+                params += 1
+            if (received[i] == '&'):
+                print("encontrou.se um & no indice: "+str(i)+" ... proseguindo")
+            i += 1
+        #par1 = 
+        #par2 = 
+        print("acabou de correr a string, "+str(params)+" parametros encontrados")
         return render_template('post.html')
 
 
