@@ -1,6 +1,7 @@
 import requests
 from flask import Flask, render_template, request
 
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -14,6 +15,21 @@ def test_page():
         return render_template('get.html')
     elif request.method == 'POST':
         print("Post was submitted")
+        print("type of variable:")
+        type1 = type(request)
+        print(type1)
+        print("type1 foi imprimido acima")
+        print(request)
+        print("request foi imprimido acima")
+        received = request.get_json()
+        print("received ficou com o conteudo em formato json")
+        type2 = type(received)
+        print("new type of variable:")
+        print(type2)
+        print("type2 foi imprimido acima")
+        print(received)
+        print("received foi imprimdo acima")
+        #print(received["param1"])
         return render_template('post.html')
 
 
