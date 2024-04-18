@@ -21,7 +21,7 @@ def test_page():
         print("type1 foi imprimido acima")
         print(request)
         print("request foi imprimido acima")
-        received = request.get_json()
+        received = request.get_data(as_text=True)
         print("received ficou com o conteudo em formato json")
         type2 = type(received)
         print("new type of variable:")
@@ -29,7 +29,8 @@ def test_page():
         print("type2 foi imprimido acima")
         print(received)
         print("received foi imprimdo acima")
-        #print(received["param1"])
+        #param1 = 
+        #param2 = 
         return render_template('post.html')
 
 
