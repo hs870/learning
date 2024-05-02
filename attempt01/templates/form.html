@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+{% block content %}
+<h2>AQUI VAMOS POR O FORMULARIO</h2>
+<form method="post">
+    {{ form.csrf_token }}
+    {{render_field(form.value1)}}
+    {{render_field(form.value2)}}
+    {{render_field(form.text1)}}
+    {{render_field(form.slider1)}}
+    {{render_field(form.submit)}}
+</form>
+{% endblock %}

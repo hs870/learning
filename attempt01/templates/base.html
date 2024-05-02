@@ -1,0 +1,17 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>A test page</title>
+        {{ bootstrap.load_css()}}
+        <style>
+        </style>
+    </head>
+    <body>
+        <h1>this message is from the doc base.html</h1>
+        <h3>after this message we have the block content</h3>
+        {% block content %}{% endblock %}
+    </body>
+</html>
