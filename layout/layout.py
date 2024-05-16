@@ -13,6 +13,26 @@ app.secret_key = 'dev'
 def index():
     return render_template('video.html')
 
+@app.route('/instructions', methods=['GET'])
+def instructions():
+    return render_template('instructions.html')
+
+@app.route('/report', methods=['GET'])
+def report():
+    return render_template('report.html')
+
+@app.route('/presentation', methods=['GET'])
+def presentation():
+    return render_template('presentation.html')
+
+@app.route('/info', methods=['GET'])
+def info():
+    return render_template('info.html')
+
+@app.route('/notas', methods=['GET'])
+def notas():
+    return render_template('notas.html')
+
 def main():
     app.run(port=5005, debug=True, host='0.0.0.0')
 
