@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <!--
+        src="{{url_for('static', filename='logo3.png')}}"
+    -->
+    <video id="the_feed" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" data-setup='{}'>
+        <source src="{{url_for('static', filename='feed/stream.m3u8')}}" type="application/x-mpegURL">
+    </video>
+{% endblock %}
