@@ -2,7 +2,51 @@
 
 
 {% block content %}
-comando para passar rtsp para hls:<br>
-ffmpeg -v verbose -i rtsp://192.168.0.30/stream1 -vf scale=1280:720 -vcodec libx264 -r 25 -b:v 1000000 -crf 31 -sc_threshold 0 -f hls -hls_time 5 -segment_time 5 -hls_list_size 5 -hls_flags delete_segments ~/Documents/GitHubTesting/layout/static/feed/stream.m3u8
-{% endblock %}
+<div class="container">
+    working templates<br>
+    https://docs.djangoproject.com/en/dev/ref/templates/language/#template-inheritance
+    <br> usar extend, include, blocks<br>
+    dentro de 'block content' posso ter "fallback"<br>
+    posso usar includes para chamar outros blocos<br><br><br>
 
+    a ideia é ter uma landing page com: <br>
+    carousel, nav bar, video, ?imagens/textos?
+    <br>
+    a main page tem:<br>
+    carousel, nav bar, video, controlos (right + left)
+    <br>
+    a instructions tem:<br>
+    carousel, nav bar,...<br>
+    <br>
+    a report tem:<br>
+    carousel, nav bar,...<br>
+    <br>
+    a presentation tem:<br>
+    carousel, nav bar,...<br>
+    <br>
+    a +info tem:<br>
+    carousel, nav bar,...<br>
+    <br>
+    a notas tem:<br>
+    carousel, nav bar, os meus apontamentos<br>
+
+    <br>
+<h1>    ver o que faz o self dentro da classe
+    <br> analisar em detalhe como funcionao o render_field do from 'bootstrap5/form.html' import render_form, render_field, render_form_row
+       ~wtforms.form.Form`.
+</h1><br>
+
+
+    <br><br><br><br><br><br>
+
+
+    <br>comando para confirmar acesso a stream:<br>
+    ffplay -i rtsp://192.168.0.30/stream1<br><br><br>
+    comando para passar rtsp para hls:<br>
+    ffmpeg -v verbose -i rtsp://192.168.0.30/stream1 -vf scale=1280:720 -vcodec libx264 -r 25 -b:v 1000000 -crf 31 -sc_threshold 0 -f hls -hls_time 5 -segment_time 5 -hls_list_size 5 -hls_flags delete_segments ~/Documents/GitHubTesting/layout/static/feed/stream.m3u8
+    <br><br><br>
+
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+<div class="col-sm-2">
+    sliders on the right
+    <form method="post">
+        {{ form.csrf_token }}
+        {{render_field(form.slider0)}}
+        {{render_field(form.slider1)}}
+        {{render_field(form.slider2)}}
+        {{render_field(form.slider3)}}
+        {{render_field(form.slider4)}}
+        {{render_field(form.slider5)}}
+        {{render_field(form.slider6)}}
+        {{render_field(form.submit)}}
+    </form>
+</div>
