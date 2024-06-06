@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camera WebApp</title>
+    <link rel="stylesheet" href="../static/docs/css/bootstrap.min.css">
+    <script defer src="../static/docs/js/bootstrap.bundle.min.js"></script>
+    <script defer type="text/javascript">
+        
+        let swirVal = false;
+
+        function showValue(caller) {
+            if (caller == 3){
+              document.getElementById("Reposta").innerHTML = "parametro enviado";
+            }
+            let val = document.getElementById(caller).value;
+            document.getElementById("Rgroup1").innerHTML = caller + ": " + val;
+            
+            const pedido = new XMLHttpRequest();
+
+            const info = {
+              param : caller,
+              value : val
+            };
+
+            pedido.open("POST", "/", true);
+            pedido.setRequestHeader("Content-Type", "application/json");
+            pedido.send(JSON.stringify(info));
+        }
+
+        function toggleSWIR() {
+            if (swirVal){
+                document.getElementById("Lgroup1").innerHTML = "SWIR is now Off";
+                swirVal = false;
+            } else {
+                document.getElementById("Lgroup1").innerHTML = "SWIR is now On";
+                swirVal = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- Carousel com logos -->
+                <div class="carousel">
+                    <div class="carousel slide" id="SponsorLogos" data-bs-wrap="true" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo1.png')}}" class="d-block w-80"
+                                    alt="Empresa1">
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo2.png')}}" class="d-block w-80"
+                                    alt="Empresa2">
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo3.png')}}" class="d-block w-80"
+                                    alt="Empresa3">
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo4.png')}}" class="d-block w-80"
+                                    alt="Empresa4">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+                <!--
+                    https://www.youtube.com/watch?v=7AT1X9Z41sA
+                    https://getbootstrap.com/docs/5.3/components/navbar/
+                -->
+                <nav class="navbar navbar-expand-md">
+                    <div class="container-fluid">
+                        <a href="/" class="navbar-brand">
+                            <span class="fw-bold text-secondary">
+                                Camera WebApp
+                            </span>
+                        </a>
+
+                        <!--o gajo pos aqui uma funçao e collapse para small screens (7.09)-->
+
+                        <!--vamos fazer as restantes opções-->
+                        <div class="container-fluid" id="main-nav">
+                            <div class="navbar-nav">
+                                <a class="nav-link" href="/instructions">Instructions</a>
+                                <a class="nav-link" href="/report">Report</a>
+                                <a class="nav-link" href="/presentation">Presentation</a>
+                                <a class="nav-link" href="/info">+info</a>
+                                <a class="nav-link" href="/notas">notas</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="btn-group">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">Homing</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Zoom</a></li>
+                            <li><a class="dropdown-item" href="#">Focus</a></li>
+                            <li><a class="dropdown-item" href="#">Aperture</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">All</a></li>
+                        </ul>
+                    </div>
+                    
+                    <input type="checkbox" class="btn-check" id="swir" autocomplete="off" onclick="setTimeout(toggleSWIR, 500)">
+                    <label class="btn btn-primary" for="swir">S.W.I.R.</label>
+
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="btncheck1">Noct</label>
+                      
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" onclick="setTimeout(toggleSWIR, 500)">
+                        <label class="btn btn-outline-primary" for="btncheck2">S.W.I.R.</label>
+                    </div>
+
+                    <p id="Lgroup1"></p>
+                </div>
+                <div class="col-sm-8">
+                    
+                </div>
+                <div class="col-sm-2">
+                    <div class="accordion" id="accordionExample">
+
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Group #1
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <label for="zoom" class="form-label">Zoom</label>
+                                    <input type="range" class="form-range" min="0" max="100" step="1" id="zoom"
+                                        onchange="setTimeout(showValue, 500, 'zoom');">
+
+
+                                    <label for="focus" class="form-label">Focus</label>
+                                    <input type="range" class="form-range" min="0" max="100" step="1" id="focus"
+                                        onchange="setTimeout(showValue, 500, 'focus');">
+
+                                    <label for="aperture" class="form-label">Aperture</label>
+                                    <input type="range" class="form-range" min="0" max="100" step="1" id="aperture"
+                                        onchange="setTimeout(showValue, 500, 'aperture');">
+                                    <p id="Rgroup1"></p>
+                                    <p id="Reposta"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Group #2
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <label for="customRange3" class="form-label">controlo 2.1</label>
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+
+                                    <label for="customRange3" class="form-label">controlo 2.2</label>
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+
+                                    <label for="customRange3" class="form-label">controlo 2.3</label>
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Group #3
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse"
+                                data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <label for="customRange3" class="form-label">controlo 3.1</label>
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+
+                                    <label for="customRange3" class="form-label">controlo 3.2</label>
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+
+                                    <label for="customRange3" class="form-label">controlo 3.3</label>
+                                    <input type="range" class="form-range" min="0" max="5" step="0.5" id="customRange3">
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
