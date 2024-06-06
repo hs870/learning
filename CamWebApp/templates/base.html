@@ -7,39 +7,7 @@
     <title>Camera WebApp</title>
     <link rel="stylesheet" href="../static/docs/css/bootstrap.min.css">
     <script defer src="../static/docs/js/bootstrap.bundle.min.js"></script>
-    <script defer type="text/javascript">
-        
-        let swirVal = false;
-
-        function showValue(caller) {
-            if (caller == 3){
-              document.getElementById("Reposta").innerHTML = "parametro enviado";
-            }
-            let val = document.getElementById(caller).value;
-            document.getElementById("Rgroup1").innerHTML = caller + ": " + val;
-            
-            const pedido = new XMLHttpRequest();
-
-            const info = {
-              param : caller,
-              value : val
-            };
-
-            pedido.open("POST", "/", true);
-            pedido.setRequestHeader("Content-Type", "application/json");
-            pedido.send(JSON.stringify(info));
-        }
-
-        function toggleSWIR() {
-            if (swirVal){
-                document.getElementById("Lgroup1").innerHTML = "SWIR is now Off";
-                swirVal = false;
-            } else {
-                document.getElementById("Lgroup1").innerHTML = "SWIR is now On";
-                swirVal = true;
-            }
-        }
-    </script>
+    <script defer src="../static/docs/js/functions.js"></script>
 </head>
 
 <body>
