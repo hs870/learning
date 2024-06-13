@@ -1,4 +1,5 @@
-const ip = "http://127.0.0.1:5000"
+//const ip = "http://127.0.0.1:5000"
+const ip = "http://192.168.0.30:5000"
 let swirVal = false;
 let heaterVal = false;
 let piris;
@@ -39,6 +40,8 @@ async function lens_get(param){
     const values = await response.json();
     if( values["status"] == "pass"){
         return (values["value"]);
+    } else {
+        return ("failed");
     }
     
 }
@@ -87,4 +90,10 @@ function toggler(what) {
             swirVal = true;
         }
     }
+}
+
+async function get_zoom(){
+    const route = ip + "/lens/zoom";
+    const response = await fetch('http://192.168.0.30:5000/lens/zoom');
+    const values = await response.json();
 }

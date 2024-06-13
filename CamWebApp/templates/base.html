@@ -7,6 +7,7 @@
     <title>Camera WebApp</title>
     <link rel="stylesheet" href="../static/docs/css/bootstrap.min.css">
     <script defer src="../static/docs/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../static/docs/js/video.js"></script>
     <script defer src="../static/docs/js/functions.js"></script>
 </head>
 
@@ -104,13 +105,25 @@
                     <a class="btn btn-primary" href="#" role="button">Autofocus</a>
                                     
                     <br><br>
-                    <a class="btn btn-primary" href="#" role="button">Reset</a>    
+                    <a class="btn btn-primary" href="#" role="button">Reset</a> 
+
+                    <br><br>
+                    <a class="btn btn-primary" role="button" onclick="get_zoom()">Get Zoom</a> 
+
+                    <br><br>
+                    <a class="btn btn-primary" href="/getfocus" role="button">Get Focust</a> 
 
 
                     <p id="Lgroup1"></p>
                 </div>
                 <div class="col-sm-8">
-                    
+                    <!--
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video id="the_feed" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" data-setup='{}'>
+                            <source src="{{url_for('static', filename='feed/stream.m3u8')}}" type="application/x-mpegURL">
+                        </video>
+                    </div>
+                    -->
                 </div>
                 <div class="col-sm-2">
                   <p id="Resposta"></p>

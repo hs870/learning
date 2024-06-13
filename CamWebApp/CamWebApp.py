@@ -4,6 +4,7 @@ from flask_wtf import FlaskForm, CSRFProtect
 from wtforms.validators import DataRequired, Length, Regexp
 from wtforms.fields import *
 from flask_bootstrap import Bootstrap5, SwitchField
+import requests
 
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
@@ -43,6 +44,15 @@ def info():
 @app.route('/notas', methods=['GET'])
 def notas():
     return render_template('notas.html')
+
+@app.route('/getfocus', methods=['GET'])
+def getfocus():
+    envio = requests.get(
+        "http://192.168.0.30:5000/lens/piris",
+    )
+    print(envio.content)
+    return (envio.content)
+
 
 
 def main():
