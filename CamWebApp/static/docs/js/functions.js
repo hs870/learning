@@ -9,6 +9,28 @@ camera = {
     'focus' : -1
 }
 
+async function postreq(payload, target){
+    console.log(payload);
+    console.log(target);
+    console.log("payload & target was printed");
+    
+    const json = payload;
+    console.log(json);
+    console.log("json impresso");
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(json),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+
+    const res = await fetch (target, options);
+    const msg = await res.json();
+    const estado = msg["status"];
+    console.log(estado);
+}
+
 async function lens_post(data, target){
     console.log(data);
     console.log(target);
@@ -78,15 +100,11 @@ async function toggler(what) {
     console.log("print1");
     console.log(camera[what]);
     
-    /*let payload = {};
-    payload [what] = camera[what];*/
-    /*let json = {};
-    json[what] = camera[what];*/
     const json = {
         [what] : camera[what]
     }
-
-
+    postreq(json, "/post"+what);
+    /*
     console.log(json);
     console.log( JSON.stringify(json) );
     const options = {
@@ -111,8 +129,8 @@ async function toggler(what) {
     console.log("print4");
     console.log(estado);
     console.log("estado was printed");
+    */
 }
-
 
 
 
