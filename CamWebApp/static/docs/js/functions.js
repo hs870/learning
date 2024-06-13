@@ -31,6 +31,15 @@ async function postreq(payload, target){
     console.log(estado);
 }
 
+async function getreq(target, info){
+    const response = await fetch(target);
+    const values = await response.json();
+    if(values['status']=='pass'){
+        return values[info];
+    }
+    return ("lixo");
+}
+
 async function lens_post(data, target){
     console.log(data);
     console.log(target);
@@ -135,7 +144,27 @@ async function toggler(what) {
 
 
 async function initValues(){
+    param = [
+        ["zoom", "/getzoom", "zoom position"], 
+        ["piris", "/getpiris", "piris position"],
+        ["focus", "/getfocus", "focus position"]
+    ];
 
+    for(let i = 0; i < (param.length); i++){
+        camera[param[i][0]] = await getreq( param[i][1] , param[i][2]);
+        document.getElementById(param[i][0]).setAttribute("value", camera[param[i][0]]);
+        console.log(camera[param[i][0]]);
+    }
+    /*
+    camera["zoom"] = await getreq('/getzoom', 'zoom position');
+    document.getElementById("zoom").setAttribute("value", camera["zoom"]);
+    console.log("retornou o seguinte");
+    console.log(camera["zoom"]);
+    */
+
+    
+
+    /*
     let response = await fetch('/getzoom');
     let values = await response.json();
     zoom = values["zoom position"];
@@ -153,4 +182,5 @@ async function initValues(){
     _focus = values["focus position"];
     console.log(_focus);
     document.getElementById("focus").setAttribute("value", _focus);
+    */
 }
