@@ -1,11 +1,13 @@
 //const ip = "http://127.0.0.1:5000"
 const ip = "http://192.168.0.30:5000"
-let swirVal = false;
-let heaterVal = false;
-let piris;
-let zoom;
-let _focus;
 
+camera = {
+    'swir' : "off",
+    'heater' : "off",
+    'piris' : -1,
+    'zoom' : -1,
+    'focus' : -1
+}
 
 async function lens_post(data, target){
     console.log(data);
@@ -70,28 +72,48 @@ function showValue(caller) {
     lens_post(info, ip+"/lens/"+caller);
 }
 
-async function toggler(what) {
-    if (what == "heater"){
-        if (heaterVal){
-            document.getElementById("Lgroup1").innerHTML = "Heater is now Off";
-            heaterVal = false;
-        } else {
-            document.getElementById("Lgroup1").innerHTML = "Heater is now On";
-            heaterVal = true;
-        }
+async function toggler(what) {  
+    camera[what] = camera[what] == "on" ? "off" : "on";
+    document.getElementById("Lgroup1").innerHTML = what + " is now " + camera[what].toString();
+    console.log("print1");
+    console.log(camera[what]);
+    
+    /*let payload = {};
+    payload [what] = camera[what];*/
+    /*let json = {};
+    json[what] = camera[what];*/
+    const json = {
+        [what] : camera[what]
     }
 
-    if(what == "swir"){
-        if (swirVal){
-            document.getElementById("Lgroup1").innerHTML = "SWIR is now Off";
-            swirVal = false;
-        } else {
-            document.getElementById("Lgroup1").innerHTML = "SWIR is now On";
-            pedido = { "swir" : "on"};
-            swirVal = true;
+
+    console.log(json);
+    console.log( JSON.stringify(json) );
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(json),
+        headers: {
+            'Content-Type': 'application/json'
         }
     }
+    console.log("print before fetch");
+    const res = await fetch ('/postswir', options);
+    console.log("print after fetch");
+    const msg = await res.json();
+    console.log("print2");
+    console.log("fetch terminado");
+    console.log(res);
+    console.log("print3");
+    console.log("?resultado? impresso");
+    console.log(msg);
+    console.log("msg foi impresso");
+    const estado = msg["status"];
+    console.log("print4");
+    console.log(estado);
+    console.log("estado was printed");
 }
+
+
 
 
 async function initValues(){
