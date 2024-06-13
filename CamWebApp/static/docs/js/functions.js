@@ -70,7 +70,7 @@ function showValue(caller) {
     lens_post(info, ip+"/lens/"+caller);
 }
 
-function toggler(what) {
+async function toggler(what) {
     if (what == "heater"){
         if (heaterVal){
             document.getElementById("Lgroup1").innerHTML = "Heater is now Off";
@@ -87,17 +87,12 @@ function toggler(what) {
             swirVal = false;
         } else {
             document.getElementById("Lgroup1").innerHTML = "SWIR is now On";
+            pedido = { "swir" : "on"};
             swirVal = true;
         }
     }
 }
 
-async function get_zoom(){
-    //const route = ip + "/lens/zoom";
-    const response = await fetch('/getfocus');
-    const values = await response.json();
-    console.log(values);
-}
 
 async function initValues(){
 

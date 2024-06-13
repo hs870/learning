@@ -70,6 +70,16 @@ def getpiris():
     print(envio.content)
     return (envio.content)
 
+@app.route('/postswir', methods=['POST'])
+def postswir():
+    payload = request.json
+    print(payload)
+    envio = request.post(
+        ip + "/lens/swir",
+        json = payload
+    )
+    return (envio.content)
+
 
 def main():
     app.run(port=5005, debug=True, host='0.0.0.0')
