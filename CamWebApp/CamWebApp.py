@@ -9,6 +9,7 @@ import requests
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 app.secret_key = 'dev'
+ip = "http://192.168.0.30:5000"
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -48,11 +49,26 @@ def notas():
 @app.route('/getfocus', methods=['GET'])
 def getfocus():
     envio = requests.get(
-        "http://192.168.0.30:5000/lens/piris",
+        ip + "/lens/focus",
     )
     print(envio.content)
     return (envio.content)
 
+@app.route('/getzoom', methods=['GET'])
+def getzoom():
+    envio = requests.get(
+        ip + "/lens/zoom",
+    )
+    print(envio.content)
+    return (envio.content)
+
+@app.route('/getpiris', methods=['GET'])
+def getpiris():
+    envio = requests.get(
+        ip + "/lens/piris",
+    )
+    print(envio.content)
+    return (envio.content)
 
 
 def main():

@@ -93,7 +93,29 @@ function toggler(what) {
 }
 
 async function get_zoom(){
-    const route = ip + "/lens/zoom";
-    const response = await fetch('http://192.168.0.30:5000/lens/zoom');
+    //const route = ip + "/lens/zoom";
+    const response = await fetch('/getfocus');
     const values = await response.json();
+    console.log(values);
+}
+
+async function initValues(){
+
+    let response = await fetch('/getzoom');
+    let values = await response.json();
+    zoom = values["zoom position"];
+    console.log(zoom);
+    document.getElementById("zoom").setAttribute("value", zoom);
+
+    response = await fetch('/getpiris');
+    values = await response.json();
+    piris = values["piris position"];
+    console.log(piris);
+    document.getElementById("piris").setAttribute("value", piris); 
+    
+    response = await fetch('/getfocus');
+    values = await response.json();
+    _focus = values["focus position"];
+    console.log(_focus);
+    document.getElementById("focus").setAttribute("value", _focus);
 }
