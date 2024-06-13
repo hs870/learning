@@ -8,6 +8,10 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+zoom = "50"
+focus = "77"
+piris = "30"
+
 @app.route('/')
 def hello():
     return 'Hello World!'
@@ -19,17 +23,24 @@ def reply():
 @app.route('/lens/focus', methods=['GET', 'POST'])
 def lens_Focus():
     if request.method == 'GET':
-        return jsonify(status = "pass", value = "99")
+        return jsonify(status = "pass", value = focus)
+    elif request.method == 'POST':
+        print("Dummy got a post")
+        info = request.json
+        print (info)
+        print("dummy will attempt to return")
+        return jsonify(status = "pass")
 
-@app.route('/lens/aperture', methods=['GET', 'POST'])
-def lens_Aperture():
+
+@app.route('/lens/piris', methods=['GET', 'POST'])
+def lens_Piris():
     if request.method == 'GET':
-        return jsonify(status = "pass", value = "55")
+        return jsonify(status = "pass", value = piris)
 
 @app.route('/lens/zoom', methods=['GET', 'POST'])
 def lens_Zoom():
     if request.method == 'GET':
-        return jsonify(status = "pass", value = "42")
+        return jsonify(status = "pass", value = zoom)
 
 def main():
     app.run(port=5000, debug=True, host='0.0.0.0')

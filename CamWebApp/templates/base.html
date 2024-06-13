@@ -75,30 +75,37 @@
         <div class="container-fluid mt-3">
             <div class="row">
                 <div class="col-sm-2">
+                   
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" onclick="setTimeout(toggler, 500, 'heater')">
+                        <label class="btn btn-outline-primary" for="btncheck1">Heater</label>
+                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" onclick="setTimeout(toggler, 500, 'swir')">
+                        <label class="btn btn-outline-primary" for="btncheck2">S.W.I.R.</label>
+                    </div>
+
+
+                    <br><br>
+
                     <div class="btn-group">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Homing</button>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Zoom</a></li>
                             <li><a class="dropdown-item" href="#">Focus</a></li>
-                            <li><a class="dropdown-item" href="#">Aperture</a></li>
+                            <li><a class="dropdown-item" href="#">Piris</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="#">All</a></li>
                         </ul>
                     </div>
-                    
-                    <input type="checkbox" class="btn-check" id="swir" autocomplete="off" onclick="setTimeout(toggleSWIR, 500)">
-                    <label class="btn btn-primary" for="swir">S.W.I.R.</label>
 
-                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-                        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="btncheck1">Noct</label>
-                      
-                        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" onclick="setTimeout(toggleSWIR, 500)">
-                        <label class="btn btn-outline-primary" for="btncheck2">S.W.I.R.</label>
-                    </div>
+                    <br><br>
+                    <a class="btn btn-primary" href="#" role="button">Autofocus</a>
+                                    
+                    <br><br>
+                    <a class="btn btn-primary" href="#" role="button">Reset</a>    
+
 
                     <p id="Lgroup1"></p>
                 </div>
@@ -114,7 +121,7 @@
                             <h2 class="accordion-header">
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Group #1
+                                    Lens
                                 </button>
                             </h2>
                             <div id="collapseOne" class="accordion-collapse collapse show"
@@ -129,10 +136,9 @@
                                     <input type="range" class="form-range" min="0" max="100" step="1" id="focus"
                                         onchange="setTimeout(showValue, 500, 'focus');">
 
-                                    <label for="aperture" class="form-label">Aperture</label>
-                                    <input type="range" class="form-range" min="0" max="100" step="1" id="aperture"
-                                        onchange="setTimeout(showValue, 500, 'aperture');">
-                                    <p id="Rgroup1"></p>
+                                    <label for="piris" class="form-label">Piris</label>
+                                    <input type="range" class="form-range" min="0" max="100" step="1" id="piris"
+                                        onchange="setTimeout(showValue, 500, 'piris');">
                                 </div>
                             </div>
                         </div>
@@ -181,6 +187,7 @@
 
 
                     </div>
+                    <p id="Rgroup1"></p>
                 </div>
             </div>
         </div>

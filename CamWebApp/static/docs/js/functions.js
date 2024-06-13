@@ -1,34 +1,57 @@
-function post_request(data)
-{
-    const pedido = new XMLHttpRequest();
-    pedido.open("POST", "/", true);
-    pedido.setRequestHeader("Content-Type", "application/json");
-    pedido.send(JSON.stringify(data));
-
-}
-
-
+const ip = "http://127.0.0.1:5000"
 let swirVal = false;
+let heaterVal = false;
+let piris;
+let zoom;
+let _focus;
 
-async function initialValues(){
-    let ap = 33;
-    let zo = 11;
-    let fo = 44;
 
-    let answer = "whatsup";
-    const response = await fetch("http://127.0.0.1:5000/lens/focus")
-    const values = await response.json();
-    console.log(values);
-    console.log(values["status"]);
-    console.log(values["value"]);
-    if( values["status"] == "pass"){
-        zo = values["value"];
-        console.log("passou");
+async function lens_post(data, target){
+    console.log(data);
+    console.log(target);
+    console.log("data e target");
+    const json = data;
+    console.log("json impresso");
+    const options = {
+        method: 'POST',
+        body: JSON.stringify(json),
+        headers: {
+            'Content-Type': 'application/json'
+        }
     }
 
-    document.getElementById("aperture").setAttribute("value", ap);
-    document.getElementById("zoom").setAttribute("value", zo);
-    document.getElementById("focus").setAttribute("value", fo);
+    const res = await fetch (target, options);
+    const msg = await res.json();
+    console.log("fetch terminado");
+    console.log(res);
+    console.log("?resultado? impresso");
+    console.log(msg);
+    console.log("msg foi impresso");
+    const estado = msg["status"];
+    console.log(estado);
+    console.log("estado was printed");
+}
+
+async function lens_get(param){
+    const route = ip + "/lens/" + param;
+
+    const response = await fetch(route);
+    const values = await response.json();
+    if( values["status"] == "pass"){
+        return (values["value"]);
+    }
+    
+}
+
+async function initialValues(){
+
+    zoom = await lens_get("zoom");
+    _focus = await lens_get("focus");
+    piris = await lens_get("piris");
+
+    document.getElementById("piris").setAttribute("value", piris); 
+    document.getElementById("zoom").setAttribute("value", zoom);
+    document.getElementById("focus").setAttribute("value", _focus);
 }
 
 function showValue(caller) {
@@ -38,15 +61,30 @@ function showValue(caller) {
       caller,
       val
     };
-    post_request(info);
+    console.log("linha 64");
+    console.log(info);
+    console.log("linha 66");
+    lens_post(info, ip+"/lens/"+caller);
 }
 
-function toggleSWIR() {
-    if (swirVal){
-        document.getElementById("Lgroup1").innerHTML = "SWIR is now Off";
-        swirVal = false;
-    } else {
-        document.getElementById("Lgroup1").innerHTML = "SWIR is now On";
-        swirVal = true;
+function toggler(what) {
+    if (what == "heater"){
+        if (heaterVal){
+            document.getElementById("Lgroup1").innerHTML = "Heater is now Off";
+            heaterVal = false;
+        } else {
+            document.getElementById("Lgroup1").innerHTML = "Heater is now On";
+            heaterVal = true;
+        }
+    }
+
+    if(what == "swir"){
+        if (swirVal){
+            document.getElementById("Lgroup1").innerHTML = "SWIR is now Off";
+            swirVal = false;
+        } else {
+            document.getElementById("Lgroup1").innerHTML = "SWIR is now On";
+            swirVal = true;
+        }
     }
 }

@@ -8,11 +8,6 @@ from flask_bootstrap import Bootstrap5, SwitchField
 app = Flask(__name__)
 bootstrap = Bootstrap5(app)
 app.secret_key = 'dev'
-camip = '127.0.0.1:5000'
-
-zoom = 33
-focus = 66
-aperture = 99
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -49,13 +44,8 @@ def info():
 def notas():
     return render_template('notas.html')
 
-def initial_values():
-    
-    return
-
 
 def main():
-    initial_values()
     app.run(port=5005, debug=True, host='0.0.0.0')
 
 
