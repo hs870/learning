@@ -24,7 +24,7 @@ keys = {
         'targ' : '/lens/heater'
     },
     'lens' : {
-        'value' : 'C10',
+        'value' : 'L12',
         'targ' : 'lens/config'
     }
 }
@@ -41,7 +41,34 @@ lenses = {
         'piris_speed' : 50,
         'piris_max' : 85,
         'piris_position' : 0
+    },
+
+    'L12' : {
+        'zoom_speed' : 300,
+        'zoom_max' : 2108,
+        'zoom_position' : 0,
+        'focus_speed' : 400,
+        'focus_max' : 3530,
+        'focus_position' : 0,
+        'piris_speed' : 25,
+        'piris_max' : 110,
+        'piris_position' : 0
     }
+    /*
+    ,
+
+    '' : {
+        'zoom_speed' : ,
+        'zoom_max' : ,
+        'zoom_position' : ,
+        'focus_speed' : ,
+        'focus_max' : ,
+        'focus_position' : ,
+        'piris_speed' : ,
+        'piris_max' : ,
+        'piris_position' : 
+    }
+    */
 }
 
 
@@ -127,8 +154,22 @@ async function button_push(button){
     //toggler
 }
 
-async function initConf(){
-    //get correct slider vals
+async function initValues(){
+    console.log("entrou");
+    for (let x in keys){
+       if (keys[x].hasOwnProperty('info')){
+        console.log(x);
+        val = await getValue(x);
+        console.log(val);
+        percent = value_to_percent(x, val)
+        console.log(percent)
+        document.getElementById(x).setAttribute("value", percent);
+       }
+    }
+    console.log("saiu");
+
+    
+    //get correct slider vals - CHECK
     //set heater and swir to off
     //auto-config the lens
 }
