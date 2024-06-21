@@ -143,7 +143,7 @@ async function updateValue(param){
         target
     }
     result = await postreq(info);
-    document.getElementById("Rgroup1").innerHTML = param + ": " + new_val;
+    document.getElementById("Rgroup1").innerHTML = param + ": " + end_position;
 }
 
 async function button_push(button){
@@ -155,7 +155,12 @@ async function button_push(button){
 }
 
 async function initValues(){
+    //get correct slider vals - CHECK
+    //set heater and swir to off - ?CHECK?
+    //?auto-config the lens? --- shouldnt be done
+    
     console.log("entrou");
+    
     for (let x in keys){
        if (keys[x].hasOwnProperty('info')){
         console.log(x);
@@ -165,13 +170,29 @@ async function initValues(){
         console.log(percent)
         document.getElementById(x).setAttribute("value", percent);
        }
+       method = 'post';
+       heater = keys['heater']['value'];
+       swir = keys['heater']['value'];
+       target = keys['heater']['targ'];
+       info={
+        heater,
+        method,
+        target
+       };
+       postreq(info);
+       
+       target = keys['swir']['targ'];
+       info={
+        swir,
+        method,
+        target
+       };
+       postreq(info);
     }
+    
     console.log("saiu");
 
-    
-    //get correct slider vals - CHECK
-    //set heater and swir to off
-    //auto-config the lens
+
 }
 
 function percent_to_value(param, percent){
