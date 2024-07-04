@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camera WebApp</title>
+    <link rel="stylesheet" href="../static/docs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/docs/css/video-js.css">
+    <script defer src="../static/docs/js/bootstrap.bundle.min.js"></script>
+    <script defer src="../static/docs/js/video.js"></script>
+    <script defer src="../static/docs/js/functions.js"></script>
+</head>
+
+<body onload="initValues()">
+    <div class="container pt-4">
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- Carousel com logos -->
+                <div class="carousel">
+                    <div class="carousel slide" id="SponsorLogos" data-bs-wrap="true" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+
+                            <div class="carousel-item active" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo1.png')}}" class="d-block w-80"
+                                    alt="Empresa1">
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo2.png')}}" class="d-block w-80"
+                                    alt="Empresa2">
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo3.png')}}" class="d-block w-80"
+                                    alt="Empresa3">
+                            </div>
+
+                            <div class="carousel-item" data-bs-interval="3000">
+                                <img src="{{url_for('static', filename='logo4.png')}}" class="d-block w-80"
+                                    alt="Empresa4">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <!--
+                    https://www.youtube.com/watch?v=7AT1X9Z41sA
+                    https://getbootstrap.com/docs/5.3/components/navbar/
+                -->
+                <nav class="navbar navbar-expand-md pt-5">
+                    <div class="container-fluid pt-5">
+                        <a href="/" class="navbar-brand">
+                            <span class="fw-bold text-secondary">
+                                Camera WebApp
+                            </span>
+                        </a>
+
+                        <!--o gajo pos aqui uma funçao e collapse para small screens (7.09)-->
+
+                        <!--vamos fazer as restantes opções-->
+                        <div class="container-fluid" id="main-nav">
+                            <div class="navbar-nav">
+                                <a class="nav-link" href="/instructions">Instructions</a>
+                                <a class="nav-link" href="/info">+info</a>
+                                <a class="nav-link" href="/report">Report</a>
+                                <a class="nav-link" href="/presentation">Presentation</a>
+                                <a class="nav-link" href="/notas">notas</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-sm-3">
+                <img src="{{url_for('static', filename='camera.png')}}" class="d-block w-80"
+                                    alt="Camerathing">
+            </div>
+        </div>
+        {% block content_of_page %}
+        <div class="container-fluid mt-3">
+            <div class="row">
+                <div class="col-sm-2">
+                    {% include 'left.html' %}
+                    
+                </div>
+                <div class="col-sm-8">
+                    
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <video id="the_feed" class="video-js vjs-fluid vjs-default-skin" controls preload="auto" data-setup='{}'>
+                            <source src="{{url_for('static', filename='feed/stream.m3u8')}}" type="application/x-mpegURL">
+                        </video>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-2">
+                    {% include 'right.html' %}
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+</body>
+
+</html>

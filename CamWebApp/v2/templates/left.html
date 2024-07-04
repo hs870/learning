@@ -1,0 +1,49 @@
+<div class="d-grid gap-2">
+    <div class="btn-group" role="group" aria-label="togglers">
+        <input type="checkbox" class="btn-check" id="heater" autocomplete="off"
+            onclick="toggler('heater')">
+        <label class="btn btn-outline-primary" for="heater">Heater</label>
+        <input type="checkbox" class="btn-check" id="swir" autocomplete="off"
+            onclick="toggler('swir')">
+        <label class="btn btn-outline-primary" for="swir">S.W.I.R.</label>
+    </div>
+
+    <div class="btn-group" role="group" aria-label="inverters">
+        <button type="button" class="btn btn-primary" onclick="img_flip('y')">Flip YY</button>
+        <button type="button" class="btn btn-primary" onclick="img_flip('x')">Flip XX</button>
+    </div>
+
+    <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Homing</button>
+        <ul class="dropdown-menu">
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('zoom')">Zoom</button></li>
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('focus')">Focus</button></li>
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('piris')">Piris</button></li>
+            <li>
+                <hr class="dropdown-divider">
+            </li>
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('all')">All</button></li>
+        </ul>
+    </div>
+
+
+    <div class="btn-group">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Lens</button>
+        <ul class="dropdown-menu">
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('L12')">L12</button></li>
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('C03')">C03</button></li>
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('C10')">C10</button></li>
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('Z05')">Z05</button></li>
+            <li><button class="dropdown-item" type="buttton" onclick="button_push('L15')">L15</button></li>
+        </ul>
+    </div>
+
+    <a class="btn btn-primary" role="button" onclick="button_get('/lens/autofocus')">Autofocus</a>
+    <a class="btn btn-primary" role="button" onclick="button_get('/lens/reset')">Reset</a>
+
+</div>
+
+
+<p id="Lgroup1"></p>

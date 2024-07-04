@@ -1,11 +1,15 @@
 from flask import Flask, render_template, request, flash, redirect, url_for
-from flask_wtf import FlaskForm, CSRFProtect
 import requests
+import os
 
 app = Flask(__name__)
 app.secret_key = 'dev'
 ip = "http://192.168.0.30:5000"
 #ip = "http://127.0.0.1:5005"
+
+clear_feed_files = 'rm ./static/feed/*'
+run_ffmpeg = 'ffmpeg -fflags nobuffer -i rtsp://192.168.0.30/stream1 -c:v copy -c:a copy -hls_time 1 -hls_list_size 5 -hls_flags delete_segments -start_number 1 ./static/feed/stream.m3u8 &'
+teste = 'rm static/feed/*'
 
 def cam_get(target):
     envio = requests.get(
@@ -24,10 +28,9 @@ def cam_post(payload, target):
 @app.route('/from_js', methods=['POST'])
 def from_js():
     info = request.json
-    method = info['method']
-    target = info['target']
-    info.pop("target")
-    info.pop("method")
+    method = info.pop("method")
+    target = info.pop("target")
+    
     if (method == "post"):
         result = cam_post(info, target)
         print(result)
@@ -37,6 +40,8 @@ def from_js():
 
 @app.route('/', methods=['GET'])
 def index():
+    # os.system(clear_feed_files)
+    # os.system(run_ffmpeg)
     return render_template('index.html')
 
 @app.route('/instructions', methods=['GET'])
@@ -65,7 +70,7 @@ def notas():
 
 
 def main():
-    app.run(port=5005, debug=True, host='0.0.0.0')
+    app.run(port=5007, debug=True, host='0.0.0.0')
 
 if __name__ == '__main__':
     main()

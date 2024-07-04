@@ -1,0 +1,24 @@
+POSTs:
+/lens/config { 'type' : 'C10' }
+	-status pass
+
+/lens/focus { 'speed' : 100, 'steps' : 100}
+	-status pass
+	
+/lens/heater { 'heater' : 'on'}
+	-status pass
+	
+/lens/homing { 'motorType' : 'focus' }
+	-status pass
+
+
+GETs:
+/lens/autofocus
+	-status pass
+
+/lens/focus
+	-focus position
+	
+	
+	
+

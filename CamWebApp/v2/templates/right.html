@@ -1,0 +1,51 @@
+<p id="Resposta"></p>
+<div class="accordion" id="sliders-accordion">
+
+
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne">
+                Lenses
+            </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <label for="zoom" class="form-label">Zoom</label>
+                <input type="range" class="form-range" min="0" max="100" step="1" id="zoom"
+                    onchange="setTimeout(updateValue, 500, 'zoom');">
+
+
+                <label for="focus" class="form-label">Focus</label>
+                <input type="range" class="form-range" min="0" max="100" step="1" id="focus"
+                    onchange="setTimeout(updateValue, 500, 'focus');">
+
+                <label for="piris" class="form-label">Piris</label>
+                <input type="range" class="form-range" min="0" max="100" step="1" id="piris"
+                    onchange="setTimeout(updateValue, 500, 'piris');">
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Remote Commissioning
+            </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <label for="pan" class="form-label">Pan</label>
+                <input type="range" class="form-range" min="0" max="5" step="0.5" id="pan" disabled>
+
+                <label for="tilt" class="form-label">Tilt</label>
+                <input type="range" class="form-range" min="0" max="5" step="0.5" id="tilt" disabled>
+
+                <label for="roll" class="form-label">Roll</label>
+                <input type="range" class="form-range" min="0" max="5" step="0.5" id="roll" disabled>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<p id="Rgroup1"></p>
